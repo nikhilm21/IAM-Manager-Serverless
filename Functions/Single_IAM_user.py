@@ -1,6 +1,8 @@
 import boto3
 import argparse
 
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('username',help='Write the IAM you want to search')
 args = parser.parse_args()

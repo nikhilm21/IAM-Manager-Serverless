@@ -2,32 +2,24 @@ import boto3
 import argparse
 from Dependencies import Sync_IAM
 
-parser = argparse.ArgumentParser()
-parser.add_argument('username',help='Write the IAM user you want to delete')
-args = parser.parse_args()
+def Delete_User():
 
-try:
-    client = boto3.client('iam')
-    client.delete_user(UserName = args.username)
-    print('User Deleted')
-    Sync_IAM()
-    
-except Exception as e:
-    print('User Not Deleted: Try Again')
+    '''
+    Delets IAM User with parser passing the username
+    '''
 
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('username',help='Write the IAM user you want to delete')
+    args = parser.parse_args()
 
-# dynamodb = boto3.resource('dynamodb')
-# table = dynamodb.Table('users')
+    try:
+        client = boto3.client('iam')
+        client.delete_user(UserName = args.username)
+        Sync_IAM()
+        return 'User Deleted'
+        
+        
+    except Exception as e:
+        return 'User Not Deleted: Try Again'
 
-
-# try:
-#     response = table.delete_item(
-#         Key = {
-#             'UserName': args.username
-#         }
-#     )
-#     print('User Deleted')
-    
-# except Exception as e:
-#     print('User Not Found: Try Again')

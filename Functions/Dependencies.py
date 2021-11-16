@@ -24,6 +24,8 @@ def Sync_IAM():
         i.pop('CreateDate')  
         table.put_item(Item=i)
 
+    #TODO: Return Type?
+
     print('DB Sync Completed')
 
 
@@ -70,3 +72,5 @@ def deleteTable():
         print('Table Deleted')
     except Exception as e:
         print('Table Not Deleted: Try Again')
+
+Sync_IAM()
